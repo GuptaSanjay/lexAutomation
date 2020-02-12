@@ -1,20 +1,14 @@
 const { Given, When, Then } = require("cucumber");
 // const { expect } = require("chai");
 
-Given("a variable set to {int}", async function(number) {
-  // // this.setTo(number);
-  await this.driver.get("https://test.salesforce.com/");
-  await this.driver.sleep(2000);
-  console.log('Mandeep');
+Given(/^I am logged in to salesforce$/, async function () {
+  await driver.get("https://test.salesforcessss.com/");
+
 });
 
-When("I increment the variable by {int}", async function(number) {
-  // await this.driver.findElement({xpath: './/li[@class="orb-nav-weather"]/a'}).click();
-  let title1 = await this.driver.getTitle();
-  console.log(title1);
-  console.log('Singh');
-});
+When(/^I create a new customer$/, function () {
 
-Then("the variable should contain {int}", function(number) {
-  // expect(this.variable).to.eql(number);
+});
+When(/^I create a new zquote$/, function () {
+
 });

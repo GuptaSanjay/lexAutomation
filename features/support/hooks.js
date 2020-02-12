@@ -1,30 +1,22 @@
 const {After,Before,AfterAll} = require("cucumber");
 const reporter = require('cucumber-html-reporter');
 
-Before(function () {
-  console.log('\x1b[33m%s\x1b[0m', 'Execution Started');
-  return this.driver.manage().window().setSize(1680, 1050);
-});
-
-// After(function (scenario) {
-//   if (scenario.result.status === "passed") {
-//     return this.attach('Some New Test', 'text/plain');
-//   }
+// Before(function () {
+//   return driver.manage().window().setSize(1680, 1050);
 // });
-
 
 After(async function (scenario) {
   let world = this;
   if (scenario.result.status === "failed") {
-    await this.driver.takeScreenshot().then(function (screenShot) {
+    await driver.takeScreenshot().then(function (screenShot) {
       world.attach(screenShot, 'image/png');
     });
   } else {
-    await this.driver.takeScreenshot().then(function (screenShot) {
+    await driver.takeScreenshot().then(function (screenShot) {
       world.attach(screenShot, 'image/png');
     });
   }
-  await this.driver.quit();
+  await driver.quit();
 });
 
 AfterAll(function () {
