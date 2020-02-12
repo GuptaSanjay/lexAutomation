@@ -6,31 +6,25 @@ Before(function () {
   return this.driver.manage().window().setSize(1680, 1050);
 });
 
-After(function (scenario) {
-  if (scenario.result.status === "passed") {
-    return this.attach('Some New Test', 'text/plain');
-  }
-});
+// After(function (scenario) {
+//   if (scenario.result.status === "passed") {
+//     return this.attach('Some New Test', 'text/plain');
+//   }
+// });
 
-After(function () {
-  return this.driver.quit();
-});
 
 After(async function (scenario) {
   let world = this;
-  // if (scenario.result.status === ?.FAILED) {
+  if (scenario.result.status === "failed") {
     await this.driver.takeScreenshot().then(function (screenShot) {
       world.attach(screenShot, 'image/png');
     });
-  // }
-
+  }
+  await this.driver.quit();
 });
-
-
 
 AfterAll(function () {
   console.log('\x1b[33m%s\x1b[0m', 'Execution Ended');
-
   // let options = {
   //   theme: 'bootstrap',
   //   // jsonFile: './reports/cucumber-json-report.json',
@@ -51,20 +45,3 @@ AfterAll(function () {
   //  return;
   // await new Promise(resolve => setTimeout(resolve, 2000)); // 3 sec
 });
-
-
-//
-// AfterAll(async function () {
-//   await new Promise(resolve => setTimeout(resolve, 3000)); // 3 sec
-//   console.log("I am 3 ");
-// });
-//
-// AfterAll(async function () {
-//   await new Promise(resolve => setTimeout(resolve, 3000)); // 3 sec
-//   console.log("I am 2 ");
-// });
-//
-// AfterAll(async function () {
-//   await new Promise(resolve => setTimeout(resolve, 3000)); // 3 sec
-//   console.log("I am 1");
-// });
