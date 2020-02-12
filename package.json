@@ -10,7 +10,7 @@
   "author": "Mandeep",
   "license": "ISC",
   "devDependencies": {
-    "chromedriver": "^80.0.0",
+    "chromedriver": "^79.0.3",
     "cucumber": "^6.0.5",
     "cucumber-html-reporter": "^5.1.0",
     "geckodriver": "^1.19.1",
