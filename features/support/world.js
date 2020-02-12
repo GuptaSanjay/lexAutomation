@@ -16,7 +16,7 @@ Before(function () {
 function getDriverInstance() {
   return new seleniumWebdriver.Builder()
     .forBrowser('chrome')
-    // .usingServer('http://ec2-5?2-212-140-72.eu-west-1.compute.amazonaws.com:4444/wd/hub')
+    .usingServer('http://ec2-52-212-140-72.eu-west-1.compute.amazonaws.com:4444/wd/hub')
     .build();
 }
 
