@@ -12,6 +12,10 @@ After(function (scenario) {
   }
 });
 
+After(function () {
+  return this.driver.quit();
+});
+
 After(async function (scenario) {
   let world = this;
   // if (scenario.result.status === ?.FAILED) {
@@ -22,9 +26,7 @@ After(async function (scenario) {
 
 });
 
-After(function () {
-  return this.driver.quit();
-});
+
 
 AfterAll(function () {
   console.log('\x1b[33m%s\x1b[0m', 'Execution Ended');
