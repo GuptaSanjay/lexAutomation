@@ -4,7 +4,8 @@
   "description": "Framework",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js --tags @mytest -f json:./reports/cucumber-json-report.json"
+    "test": "cucumber-js",
+    "test1": "cucumber-js --tags @mytest -f json:./reports/cucumber-json-report.json"
   },
   "author": "Mandeep",
   "license": "ISC",
