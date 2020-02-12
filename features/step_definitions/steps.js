@@ -2,7 +2,7 @@ const { Given, When, Then } = require("cucumber");
 // const { expect } = require("chai");
 
 Given(/^I am logged in to salesforce$/, async function () {
-  await driver.get("https://test.salesforce.com/");
+  await driver.get("https://tests.salesforce.com/");
 
 });
 
