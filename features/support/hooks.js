@@ -6,9 +6,15 @@ Before(function () {
   return this.driver.manage().window().setSize(1680, 1050);
 });
 
-After(function (scenario) {
+After(async function (scenario) {
   if (scenario.result.status === "passed") {
     return this.attach('Some text Test§', 'text/plain');
+  }
+  let world = this;
+  if (scenario.result.status === Status.FAILED) {
+    await this.driver.takeScreenshot().then(function (screenShot) {
+      world.attach(screenShot, 'image/png');
+    });
   }
 });
 
