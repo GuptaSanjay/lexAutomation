@@ -7,16 +7,16 @@ let chrome = require('selenium-webdriver/chrome');
 let chromeDriver = require('chromedriver');
 const {Before} = require("cucumber");
 
-Before(function () {
-  let driver = getDriverInstance();
+Before(async function () {
+  let driver = await getDriverInstance();
   global.driver = driver;
-  return driver
 })
 
 function getDriverInstance() {
   return new seleniumWebdriver.Builder()
     .forBrowser('chrome')
-    .usingServer('http://ec2-52-212-140-72.eu-west-1.compute.amazonaws.com:4444/wd/hub')
+     .usingServer('')
+     // .usingServer('http://ec2-52-212-140-72.eu-west-1.compute.amazonaws.com:4444/wd/hub')
     .build();
 }
 
@@ -29,9 +29,6 @@ function World({attach}) {
     return this.driver.wait(condition)
   }
 }
-
-
-
 
 setWorldConstructor(World)
 setDefaultTimeout(6*1000);
