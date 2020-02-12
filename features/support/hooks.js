@@ -19,6 +19,10 @@ After(async function (scenario) {
     await this.driver.takeScreenshot().then(function (screenShot) {
       world.attach(screenShot, 'image/png');
     });
+  } else {
+    await this.driver.takeScreenshot().then(function (screenShot) {
+      world.attach(screenShot, 'image/png');
+    });
   }
   await this.driver.quit();
 });
