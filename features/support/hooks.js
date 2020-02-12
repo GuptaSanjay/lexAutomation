@@ -6,16 +6,20 @@ Before(function () {
   return this.driver.manage().window().setSize(1680, 1050);
 });
 
-After(async function (scenario) {
+After(function (scenario) {
   if (scenario.result.status === "passed") {
-    return this.attach('Some text Test§', 'text/plain');
+    return this.attach('Some New Test', 'text/plain');
   }
+});
+
+After(async function (scenario) {
   let world = this;
-  if (scenario.result.status === Status.FAILED) {
+  // if (scenario.result.status === ?.FAILED) {
     await this.driver.takeScreenshot().then(function (screenShot) {
       world.attach(screenShot, 'image/png');
     });
-  }
+  // }
+
 });
 
 After(function () {
