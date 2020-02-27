@@ -32,6 +32,10 @@ module.exports = {
     return this.getSFElement('.//*[starts-with(@name, "vfFrameId")]', '').then(el => el.getAttribute('name').then(name => driver.switchTo().frame(name)));
   },
 
+  switchToIframeByNameOrId: function(identifier) {
+    return driver.switchTo().frame(identifier);
+  },
+
   getBy: function (identifier, identifierType){
     let by;
     if (identifierType === 'Link') {
@@ -42,9 +46,11 @@ module.exports = {
     } else if (identifier.includes(".//")) {
       // identifier = identifier.substring(1);
       by = By.xpath(identifier);
-    } else if (identifier.includes(".")) {
+    } else if (identifier.charAt(0) === ".") {
       identifier = identifier.substring(1);
       by = By.className(identifier);
+    } else {
+      by = By.css(identifier);
     }
     return by;
   },

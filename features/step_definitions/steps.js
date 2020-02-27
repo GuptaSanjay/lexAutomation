@@ -1,28 +1,25 @@
-const { Given, When, Then } = require("cucumber");
-// const { expect } = require("chai");
-
-Given(/^I am logged in to salesforce$/, {timeout: 18000}, async function () {
-  await driver.get("https://test.salesforce.com/");
-
-  await driver.findElement({id:'username'}).then(async function (el) {
-    await el.sendKeys('autotest.lightuser@bgch.co.uk.octopus.test');
-  });
-  await driver.sleep(1000);
-
-  await driver.findElement({id:'password'}).then(async function (el) {
-    await el.sendKeys('Liverpool99');
-  });
-  await driver.sleep(1000);
-
-  await driver.findElement({id:'Login'}).then(async function (el) {
-    await el.click();
-  });
-  await driver.sleep(10000);
-});
-
-When(/^I create a new customer$/, function () {
-
-});
-When(/^I create a new zquote$/, function () {
-
-});
+// const { Given, When, Then } = require("cucumber");
+// // const { expect } = require("chai");
+// const wd = require('../../runtime/webDriverHelper');
+//
+// Given(/^I am logged in to salesforce$/, {timeout: 36000}, async function () {
+//   await driver.get("https://test.salesforce.com/");
+//
+//
+//   await wd.setValueByElementId('username', 'autotest.lightuser@bgch.co.uk.octopus.test');
+//   await wd.setValueByElementId('password1', 'Liverpool99');
+//   await wd.clickByElementId('Login');
+//
+//    let name = await driver.findElement({xpath:'.//*[starts-with(@name, "vfFrameId")]'}).getAttribute('name');
+//    await driver.switchTo().frame(name);
+//     await driver.findElement({xpath:'.//*[@data-id="saveButton"]'}).then(async function (el) {
+//       await el.click();
+//     });
+// });
+//
+// When(/^I create a new customer$/, function () {
+//
+// });
+// When(/^I create a new zquote$/, function () {
+//
+// });

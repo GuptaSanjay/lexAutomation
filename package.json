@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test1": "cucumber-js",
-    "test": "cucumber-js --tags @mytest -f json:./reports/cucumber-json-report.json"
+    "test": "cucumber-js --tags @newDeliveryZquoteGBR -f json:./reports/cucumber-json-report.json"
   },
-
   "author": "Mandeep",
   "license": "ISC",
   "devDependencies": {
@@ -15,6 +14,11 @@
     "cucumber": "^6.0.5",
     "cucumber-html-reporter": "^5.1.0",
     "geckodriver": "^1.19.1",
-    "selenium-webdriver": "^3.6.0"
+    "selenium-webdriver": "^3.6.0",
+    "properties-reader": "0.0.16",
+    "chai": "^4.2.0"
+  },
+  "dependencies": {
+    "commander": "latest"
   }
 }

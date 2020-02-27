@@ -10,6 +10,7 @@ const {Before} = require("cucumber");
 Before(async function () {
   let driver = await getDriverInstance();
   global.driver = driver;
+  global.envName = 'test';
 })
 
 function getDriverInstance() {
@@ -31,4 +32,4 @@ function World({attach}) {
 }
 
 setWorldConstructor(World)
-setDefaultTimeout(6*1000);
+setDefaultTimeout(36*1000);
