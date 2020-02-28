@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test1": "cucumber-js",
-§    "test": "cucumber-js --tags @newDeliveryZquoteGBR -f json:./reports/cucumber-json-report.json -- -n test",
+    "test": "cucumber-js --tags @newDeliveryZquoteGBR -f json:./reports/cucumber-json-report.json -- -n test",
     "uat": "node index.js -n test -t @newDeliveryZquoteGBR"
 
   },
@@ -22,6 +22,6 @@
   },
   "dependencies": {
     "commander": "latest",
-    "pjson": "^1.0.9"
+    "cucumber": "latest"
   }
 }
