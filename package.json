@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test1": "cucumber-js",
-    "test": "cucumber-js --tags @newDeliveryZquoteGBR -f json:./reports/cucumber-json-report.json"
+§    "test": "cucumber-js --tags @newDeliveryZquoteGBR -f json:./reports/cucumber-json-report.json -- -n test",
+    "uat": "node index.js -n test -t @newDeliveryZquoteGBR"
+
   },
   "author": "Mandeep",
   "license": "ISC",
@@ -19,6 +21,7 @@
     "chai": "^4.2.0"
   },
   "dependencies": {
-    "commander": "latest"
+    "commander": "latest",
+    "pjson": "^1.0.9"
   }
 }
