@@ -4,6 +4,10 @@ const webdriver = require('selenium-webdriver'),
   until = webdriver.until;
 
 module.exports = {
+  navigateTo: function(url){
+    return driver.get(url);
+  },
+
   setValue: function (identifier, value) {
     return this.getSFElement(identifier, '').then(el => el.sendKeys(value));
   },
