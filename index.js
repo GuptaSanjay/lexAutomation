@@ -1,6 +1,7 @@
 'use strict';
 
 const program = require('commander');
+const path = require('path');
 
 // program
 //   .version('0.0.1')
@@ -33,6 +34,7 @@ program
   .option('-p, --reportPath <path d="">', 'output path to save reports. defaults to ./reports', 'reports')
   .option('-r, --reportName [optional]', 'basename for report files e.g. use report for report.json', 'cucumber-json-report')
   .option('-w, --remoteService [optional]', 'address of the selenium grid', '')
+  .option('-s, --steps <path>', 'path to step definitions. defaults to ./step_definitions', 'step_definitions')
   .parse(process.argv);
 
 program.on('--help', function(){
@@ -69,6 +71,19 @@ if(program.tags) {
   runArgs.push('-t', program.tags);
 }
 
+// /** add cucumber world as first required script (this sets up the globals)
+//  */
+let worldFIle =  path.resolve(__dirname, './features/support/world.js');
+runArgs.push('-r', worldFIle);
+
+let stepsPath = path.resolve('./features/'+program.steps);
+/** add path to import step definitions
+ */
+runArgs.push('-r', stepsPath);
+
+
 let cliArgs = {argv : runArgs, cwd: process.cwd(), stdout: process.stdout};
 let cli = new (require('cucumber').Cli)(cliArgs);
+console.log("Before CLI RUN");
 cli.run();
+console.log("After CLI RUN");

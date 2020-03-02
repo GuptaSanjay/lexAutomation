@@ -5,6 +5,7 @@ const seleniumWebdriver = require('selenium-webdriver');
 const {Before} = require("cucumber");
 
 Before(async function () {
+  console.log("Starting at Before");
   global.driver = await getDriverInstance();
 });
 
