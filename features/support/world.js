@@ -12,9 +12,9 @@ function getDriverInstance() {
   let browser =  settings.browserName;
 
   return new seleniumWebdriver.Builder()
-    .forBrowser(browser)
-    .usingServer('')
-    // .usingServer('http://ec2-52-212-140-72.eu-west-1.compute.amazonaws.com:4444/wd/hub')
+    .forBrowser('chrome')
+    // .usingServer('')
+    .usingServer('http://ec2-52-212-140-72.eu-west-1.compute.amazonaws.com:4444/wd/hub')
     .build();
 }
 
