@@ -2,8 +2,6 @@
 
 const program = require('commander');
 
-let collectPaths;
-
 // program
 //   .version('0.0.1')
 //   .description('Something')
@@ -49,11 +47,7 @@ let settings = {
   remoteService:program.remoteService
 };
 
-console.log(program.browser);
-console.log(program.environment);
-
 global.settings = settings;
-
 
 global.envName = program.environment;
 
@@ -65,30 +59,3 @@ runArgs.push('-t', program.tags);
 let cliArgs = {argv : runArgs, cwd: process.cwd(), stdout: process.stdout};
 let cli = new (require('cucumber').Cli)(cliArgs);
 cli.run();
-
-//
-// let CucumberCli = new (require('cucumber').Cli)({argv: process.argv, cwd: process.cwd(), stdout: process.stdout});
-//
-// return new Promise(async function (resolve, reject) {
-//   try{
-//     CucumberCli.run(function (success) {
-//       resolve = success ? 0 : 1;
-//
-//       function exitNow() {
-//         process.exit(resolve);
-//       }
-//       if (process.stdout.write('')) {
-//         exitNow();
-//       } else {
-//         /**
-//          * write() returned false, kernel buffer is not empty yet...
-//          */
-//         process.stdout.on('drain', exitNow);
-//       }
-//     })
-//   }catch (err) {
-//     log.error('cucumber integration has failed ' + err.message);
-//     await reject(err);
-//     throw err;
-//   }
-// });
