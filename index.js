@@ -30,6 +30,7 @@ program
   .option('-n, --environment [<path>]', 'name of environment to run the framework / test in. default to test', /^(test|dev|uat|prod)$/i, 'dev')
   .option('-b, --browser [optional]', 'name of browser to use. defaults to chrome', /^(chrome|firefox)$/i, 'chrome')
   .option('-t, --tags <tagName>', 'name of tag to run')
+  .option('-r, --reports <path>', 'output path to save reports. defaults to ./reports', 'reports')
   .parse(process.argv);
 
 program.on('--help', function(){
@@ -53,8 +54,12 @@ global.envName = program.environment;
 
 //initialise the run arguments
 let runArgs = [];
+console.log(process.argv);
+
 runArgs.push(process.argv[0], process.argv[1]);
 runArgs.push('-t', program.tags);
+runArgs.push('-f', program.reports);
+
 
 let cliArgs = {argv : runArgs, cwd: process.cwd(), stdout: process.stdout};
 let cli = new (require('cucumber').Cli)(cliArgs);

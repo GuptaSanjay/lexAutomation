@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test1": "cucumber-js",
-    "test": "cucumber-js --tags @newDeliveryZquoteGBR -f json:./reports/cucumber-json-report.json -- -n test",
-    "uat": "node index.js -n test -t @newDeliveryZquoteGBR"
-
+    "test": "node index.js -r json:./reports/cucumber-json-report.json ",
+    "uat": "node index.js -n test -t @newDeliveryZquoteGBR -f json:./reports/cucumber-json-report.json"
   },
   "author": "Mandeep",
   "license": "ISC",

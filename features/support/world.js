@@ -14,7 +14,7 @@ Before(async function () {
 })
 
 function getDriverInstance() {
-  let browser = settings.browserName;
+  let browser =  settings.browserName;
 
   return new seleniumWebdriver.Builder()
     .forBrowser('chrome')
