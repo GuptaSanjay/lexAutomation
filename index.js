@@ -30,7 +30,9 @@ program
   .option('-n, --environment [<path d="">]', 'name of environment to run the framework / test in. default to test', /^(test|dev|uat|prod)$/i, 'dev')
   .option('-b, --browser [optional]', 'name of browser to use. defaults to chrome', /^(chrome|firefox)$/i, 'chrome')
   .option('-t, --tags <tagName>', 'name of tag to run')
-  .option('-r, --reports <path d="">', 'output path to save reports. defaults to ./reports', 'reports')
+  .option('-p, --reportPath <path d="">', 'output path to save reports. defaults to ./reports', 'reports')
+  .option('-r, --reportName [optional]', 'basename for report files e.g. use report for report.json', 'cucumber-json-report')
+  .option('-w, --remoteService [optional]', 'address of the selenium grid', '')
   .parse(process.argv);
 
 program.on('--help', function(){
@@ -55,10 +57,17 @@ global.envName = program.environment;
 //initialise the run arguments
 let runArgs = [];
 console.log(process.argv);
-
 runArgs.push(process.argv[0], process.argv[1]);
-runArgs.push('-t', program.tags);
-runArgs.push('-f', program.reports);
+
+//setting report path and report name
+let reportPath = 'json:./'+program.reportPath;
+let reportName = '/'+program.reportName+'.json';
+runArgs.push('-f', reportPath+reportName);
+
+//if tags are passed to run specific tests
+if(program.tags) {
+  runArgs.push('-t', program.tags);
+}
 
 let cliArgs = {argv : runArgs, cwd: process.cwd(), stdout: process.stdout};
 let cli = new (require('cucumber').Cli)(cliArgs);

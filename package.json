@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test1": "cucumber-js",
-    "test": "node index.js -r json:./reports/cucumber-json-report.json",
-    "uat": "node index.js -n test -t @newDeliveryZquoteGBR -r json:./reports/cucumber-json-report.json"
+    "test": "node index.js -w http://ec2-52-212-140-72.eu-west-1.compute.amazonaws.com:4444/wd/hub",
+    "uat": "node index.js -n test -t @newDeliveryZquoteGBR",
+    "grid": " -w http://ec2-52-212-140-72.eu-west-1.compute.amazonaws.com:4444/wd/hub"
   },
+
   "author": "Mandeep",
   "license": "ISC",
   "devDependencies": {
