@@ -34,7 +34,7 @@ program
   .option('-p, --reportPath <path d="">', 'output path to save reports. defaults to ./reports', 'reports')
   .option('-r, --reportName [optional]', 'basename for report files e.g. use report for report.json', 'cucumber-json-report')
   .option('-w, --remoteService [optional]', 'address of the selenium grid', '')
-  .option('-s, --steps <path>', 'path to step definitions. defaults to ./step_definitions', 'step_definitions')
+  .option('-s, --steps <path d="">', 'path to step definitions. defaults to ./step_definitions', 'step_definitions')
   .parse(process.argv);
 
 program.on('--help', function(){
@@ -73,13 +73,12 @@ if(program.tags) {
 
 // /** add cucumber world as first required script (this sets up the globals)
 //  */
-let worldFIle =  path.resolve(__dirname, './features/support/world.js');
-runArgs.push('-r', worldFIle);
+runArgs.push('-r', path.resolve(__dirname, './support/world.js'));
+runArgs.push('-r', path.resolve(__dirname, './support/hooks.js'));
 
-let stepsPath = path.resolve('./features/'+program.steps);
 /** add path to import step definitions
  */
-runArgs.push('-r', stepsPath);
+runArgs.push('-r', path.resolve('./features/'+program.steps));
 
 
 let cliArgs = {argv : runArgs, cwd: process.cwd(), stdout: process.stdout};
