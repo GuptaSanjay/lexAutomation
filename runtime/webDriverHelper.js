@@ -70,4 +70,15 @@ module.exports = {
     }
     return driver.findElements(by);
   },
+
+  waitRefreshTextToBe: async function(identifier, condition, waitTime){
+    let counter = 0;
+    let text = await this.getText(identifier);
+    while (text !== condition && counter < waitTime) {
+      await driver.sleep(10000);
+      await driver.refresh();
+      text = await this.getText(identifier);
+      counter++;
+    }
+  }
 };
