@@ -4,8 +4,12 @@ const {setDefaultTimeout} = require("cucumber");
 const seleniumWebdriver = require('selenium-webdriver');
 const {Before} = require("cucumber");
 
+global.SHORT_WAIT = 3000;  // 3 second delay in milliseconds
+global.MID_WAIT = 5000;    // 5 second delay in milliseconds
+global.LONG_WAIT = 10000;  // 10 second delay in milliseconds
+global.EXTRA_LONG_WAIT = 20000;  // 20 second delay in milliseconds
+
 Before(async function () {
-  console.log("Starting at Before");
   global.driver = await getDriverInstance();
 });
 

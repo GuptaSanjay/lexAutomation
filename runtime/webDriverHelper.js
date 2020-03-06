@@ -32,8 +32,13 @@ module.exports = {
     return this.getSFElement(identifier, '').then(el => el.getText(identifier));
   },
 
-  switchToIframe: function () {
-    return this.getSFElement('.//*[starts-with(@name, "vfFrameId")]', '').then(el => el.getAttribute('name').then(name => driver.switchTo().frame(name)));
+  switchToLexIframe: function () {
+    return this.getAttributeName('.//*[starts-with(@name, "vfFrameId")]').then(name => this.switchToIframe(name));
+    // return this.getSFElement('.//*[starts-with(@name, "vfFrameId")]', '').then(el => el.getAttribute('name').then(name => driver.switchTo().frame(name)));
+  },
+
+  switchToIframe: function(name){
+    driver.switchTo().frame(name);
   },
 
   getBy: function (identifier, identifierType){
@@ -71,14 +76,34 @@ module.exports = {
     return driver.findElements(by);
   },
 
-  waitRefreshTextToBe: async function(identifier, condition, waitTime){
-    let counter = 0;
-    let text = await this.getText(identifier);
-    while (text !== condition && counter < waitTime) {
-      await driver.sleep(10000);
-      await driver.refresh();
-      text = await this.getText(identifier);
-      counter++;
+  waitAndRefresh: async function(waitRefresh){
+    await driver.sleep(waitRefresh);
+    await driver.navigate().refresh();
+  },
+
+  waitRefreshUntilText: async function(identifier, condition, totalWait, refreshDuration){
+    let count = 0;
+    let maxCount = totalWait/refreshDuration;
+    while (await this.getText(identifier) !== condition && count < maxCount) {
+      this.waitAndRefresh(refreshDuration);
+      count++;
     }
-  }
+  },
+
+  getAttributeHref: async function(identifier) {
+    return this.getSFElement(identifier).then(el => el.getAttribute('href'));
+  },
+
+  getAttributeName: async function(identifier){
+    return this.getSFElement(identifier).then(el => el.getAttribute('name'));
+  },
+
+  waitAndClick: async function(identifier) {
+    return this.click(identifier);
+  },
+
+  waitAndSetValue: async function(identifier, value){
+    return this.setValue(identifier, value);
+  },
 };
+
