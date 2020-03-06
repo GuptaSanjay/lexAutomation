@@ -98,6 +98,7 @@ module.exports = {
     return this.getSFElement(identifier).then(el => el.getAttribute('name'));
   },
 
+  //Legacy
   waitAndClick: async function(identifier) {
     return this.click(identifier);
   },
@@ -105,5 +106,9 @@ module.exports = {
   waitAndSetValue: async function(identifier, value){
     return this.setValue(identifier, value);
   },
+
+  getElementText: async function(identifier){
+    return this.getText();
+  }
 };
 
