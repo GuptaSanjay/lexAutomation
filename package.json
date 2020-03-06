@@ -9,10 +9,10 @@
     "uat": "node index.js -n test -t @newDeliveryZquoteGBR",
     "grid": " -w http://ec2-52-212-140-72.eu-west-1.compute.amazonaws.com:4444/wd/hub"
   },
-
   "author": "Mandeep",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
+    "commander": "latest",
     "chromedriver": "^79.0.3",
     "cucumber": "^6.0.5",
     "cucumber-html-reporter": "^5.1.0",
@@ -20,9 +20,5 @@
     "selenium-webdriver": "^3.6.0",
     "properties-reader": "0.0.16",
     "chai": "^4.2.0"
-  },
-  "dependencies": {
-    "commander": "latest",
-    "cucumber": "latest"
   }
 }
