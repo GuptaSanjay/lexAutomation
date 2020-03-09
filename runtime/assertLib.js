@@ -1,5 +1,5 @@
 'use strict';
-const enums = require('../enum/const');
+const enums = require('./const');
 const { assert } = require('chai');
 
 module.exports = {
