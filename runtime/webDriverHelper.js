@@ -77,7 +77,7 @@ module.exports = {
   },
 
   waitAndRefresh: async function(waitRefresh){
-    await driver.sleep(waitRefresh);
+    await this.wait(waitRefresh);
     await driver.navigate().refresh();
   },
 
@@ -98,7 +98,7 @@ module.exports = {
     return this.getSFElement(identifier).then(el => el.getAttribute('name'));
   },
 
-  //Legacy
+  //*******Legacy START*******
   waitAndClick: async function(identifier) {
     return this.click(identifier);
   },
@@ -109,6 +109,30 @@ module.exports = {
 
   getElementText: async function(identifier){
     return this.getText();
+  },
+  //*******Legacy END*******
+
+
+  //*******WAIT START*******//
+  waitShort: async function(){
+    return this.wait(SHORT_WAIT);
+  },
+
+  waitMedium: async function(){
+    return this.wait(MID_WAIT);
+  },
+
+  waitLong: async function(){
+    return this.wait(LONG_WAIT);
+  },
+
+  waitExtraLong: async function(){
+    return this.wait(EXTRA_LONG_WAIT);
+  },
+
+  wait: async function(waitTime){
+    return driver.sleep(waitTime);
   }
+  //*******WAIT END*******//
 };
 
