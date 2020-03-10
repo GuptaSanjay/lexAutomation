@@ -13,11 +13,11 @@ module.exports = {
   },
 
   isEqual: function(actual, expected, message) {
-    assert.equal(expected, actual, message);
+    assert.equal(actual, expected, message);
   },
 
   isNotEqual: function(actual, expected, message) {
-    assert.notEqual(expected, actual, message);
+    assert.notEqual(actual, expected, message);
   },
 
   isPopulated: function(actual, message){
@@ -31,15 +31,15 @@ module.exports = {
     assert.isTrue(actual, message);
   },
 
-  countIncreased: function(actual, expected, message) {
+  increased: function(actual, expected, message) {
     assert.isAbove( actual, expected, message);
   },
 
-  countDecreased: function(actual, expected, message) {
+  decreased: function(actual, expected, message) {
     assert.isBelow(actual, expected, message);
   },
 
-  validate: function (field, condition, expected, actual) {
+  validate: function (actual, condition, expected, field) {
     switch (condition) {
       case enums.Assertion.IS_EQUAL:
         this.isEqual(actual, expected, field);
