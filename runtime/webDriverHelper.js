@@ -108,7 +108,7 @@ module.exports = {
   },
 
   getElementText: async function(identifier){
-    return this.getText();
+    return this.getText(identifier);
   },
   //*******Legacy END*******
 
