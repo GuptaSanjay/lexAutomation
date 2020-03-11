@@ -97,7 +97,6 @@ module.exports = {
       newDivCount = existingDivCount;
       el = await this.getSFElements('.//div');
       existingDivCount = el.length;
-      console.log(newDivCount+' < '+ existingDivCount)
     }
   }
   ,
