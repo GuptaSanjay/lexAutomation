@@ -88,6 +88,7 @@ module.exports = {
       this.waitAndRefresh(refreshDuration);
       count++;
     }
+    return this.getText(identifier);
   },
 
   getAttributeHref: async function(identifier) {
