@@ -4,22 +4,20 @@ const webdriver = require('selenium-webdriver'),
   until = webdriver.until;
 
 module.exports = {
-  navigateTo: function(url){
+
+  navigateTo: function (url) {
     return driver.get(url);
   },
-
-  setValue: function (identifier, value) {
-    return this.getSFElement(identifier, '').then(el => el.sendKeys(value));
+  //*******Attribute*******//
+  getAttributeHref: async function (identifier) {
+    return this.getSFElement(identifier).then(el => el.getAttribute('href'));
   },
 
-  isDisplayed: function (identifier) {
-    return this.getSFElements(identifier).then(els => els.length > 0);
+  getAttributeName: async function (identifier) {
+    return this.getSFElement(identifier).then(el => el.getAttribute('name'));
   },
 
-  selectByValue: function (value) {
-    return this.getSFElement('.//*[@value="' + value + '"]').then(el => el.click());
-  },
-
+  //*******Click*******//
   click: function (identifier) {
     return this.getSFElement(identifier, '').then(el => el.click());
   },
@@ -28,20 +26,8 @@ module.exports = {
     return this.getSFElement(identifier, 'Link').then(el => el.click());
   },
 
-  getText: function (identifier) {
-    return this.getSFElement(identifier, '').then(el => el.getText(identifier));
-  },
-
-  switchToLexIframe: function () {
-    return this.getAttributeName('.//*[starts-with(@name, "vfFrameId")]').then(name => this.switchToIframe(name));
-    // return this.getSFElement('.//*[starts-with(@name, "vfFrameId")]', '').then(el => el.getAttribute('name').then(name => driver.switchTo().frame(name)));
-  },
-
-  switchToIframe: function(name){
-    driver.switchTo().frame(name);
-  },
-
-  getBy: function (identifier, identifierType){
+  //*******Get*******//
+  getBy: function (identifier, identifierType) {
     let by;
     if (identifierType === 'Link') {
       by = By.linkText(identifier);
@@ -76,14 +62,86 @@ module.exports = {
     return driver.findElements(by);
   },
 
-  waitAndRefresh: async function(waitRefresh){
+  getText: function (identifier) {
+    return this.getSFElement(identifier, '').then(el => el.getText(identifier));
+  },
+
+  //*******Iframe*******//
+  switchToLexIframe: function () {
+    return this.getAttributeName('.//*[starts-with(@name, "vfFrameId")]').then(name => this.switchToIframe(name));
+    // return this.getSFElement('.//*[starts-with(@name, "vfFrameId")]', '').then(el => el.getAttribute('name').then(name => driver.switchTo().frame(name)));
+  },
+
+  switchToIframe: function (name) {
+    driver.switchTo().frame(name);
+  },
+
+  //*******Is*******//
+  isDisplayed: function (identifier) {
+    return this.getSFElements(identifier).then(els => els.length > 0);
+  },
+
+  //*******Scroll*******//
+  scrollToElement: async function (identifier) {
+    let element = this.getSFElement(identifier, '');
+    await driver.executeScript('arguments[0].scrollIntoView();', element);
+  },
+
+  scrollFullPage: async function () {
+    let el = await this.getSFElements('.//div');
+    let existingDivCount = el.length;
+    let newDivCount = 0;
+    while (newDivCount < existingDivCount) {
+      await driver.executeScript('window.scrollBy(0,600)');
+      driver.sleep(2000);
+      newDivCount = existingDivCount;
+      el = await this.getSFElements('.//div');
+      existingDivCount = el.length;
+      console.log(newDivCount+' < '+ existingDivCount)
+    }
+  }
+  ,
+
+  //*******Select*******//
+  selectByValue: function (value) {
+    return this.getSFElement('.//*[@value="' + value + '"]').then(el => el.click());
+  },
+
+  //*******Set Value*******//
+  setValue: function (identifier, value) {
+    return this.getSFElement(identifier, '').then(el => el.sendKeys(value));
+  },
+
+  //*******Wait*******
+  waitShort: async function () {
+    return this.wait(SHORT_WAIT);
+  },
+
+  waitMedium: async function () {
+    return this.wait(MID_WAIT);
+  },
+
+  waitLong: async function () {
+    return this.wait(LONG_WAIT);
+  },
+
+  waitExtraLong: async function () {
+    return this.wait(EXTRA_LONG_WAIT);
+  },
+
+  wait: async function (waitTime) {
+    return driver.sleep(waitTime);
+  },
+
+  //*******Wait and Refresh*******//
+  waitAndRefresh: async function (waitRefresh) {
     await this.wait(waitRefresh);
     await driver.navigate().refresh();
   },
 
-  waitRefreshUntilText: async function(identifier, condition, totalWait, refreshDuration){
+  waitRefreshUntilText: async function (identifier, condition, totalWait, refreshDuration) {
     let count = 0;
-    let maxCount = totalWait/refreshDuration;
+    let maxCount = totalWait / refreshDuration;
     while (await this.getText(identifier) !== condition && count < maxCount) {
       this.waitAndRefresh(refreshDuration);
       count++;
@@ -91,49 +149,18 @@ module.exports = {
     return this.getText(identifier);
   },
 
-  getAttributeHref: async function(identifier) {
-    return this.getSFElement(identifier).then(el => el.getAttribute('href'));
-  },
-
-  getAttributeName: async function(identifier){
-    return this.getSFElement(identifier).then(el => el.getAttribute('name'));
-  },
-
   //*******Legacy START*******
-  waitAndClick: async function(identifier) {
+  waitAndClick: async function (identifier) {
     return this.click(identifier);
   },
 
-  waitAndSetValue: async function(identifier, value){
+  waitAndSetValue: async function (identifier, value) {
     return this.setValue(identifier, value);
   },
 
-  getElementText: async function(identifier){
+  getElementText: async function (identifier) {
     return this.getText(identifier);
   },
-  //*******Legacy END*******
 
-
-  //*******WAIT START*******//
-  waitShort: async function(){
-    return this.wait(SHORT_WAIT);
-  },
-
-  waitMedium: async function(){
-    return this.wait(MID_WAIT);
-  },
-
-  waitLong: async function(){
-    return this.wait(LONG_WAIT);
-  },
-
-  waitExtraLong: async function(){
-    return this.wait(EXTRA_LONG_WAIT);
-  },
-
-  wait: async function(waitTime){
-    return driver.sleep(waitTime);
-  }
-  //*******WAIT END*******//
 };
 

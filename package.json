@@ -12,13 +12,13 @@
   "author": "Mandeep",
   "license": "ISC",
   "dependencies": {
-    "commander": "latest",
+    "chai": "^4.2.0",
     "chromedriver": "^79.0.3",
+    "commander": "latest",
     "cucumber": "^6.0.5",
     "cucumber-html-reporter": "^5.1.0",
     "geckodriver": "^1.19.1",
-    "selenium-webdriver": "^3.6.0",
     "properties-reader": "0.0.16",
-    "chai": "^4.2.0"
+    "selenium-webdriver": "^3.6.0"
   }
 }
