@@ -2,6 +2,8 @@ const {setWorldConstructor} = require('cucumber');
 const {setDefaultTimeout} = require("cucumber");
 
 const seleniumWebdriver = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
+
 const {Before} = require("cucumber");
 
 global.SHORT_WAIT = 3000;  // 3 second delay in milliseconds
@@ -19,10 +21,12 @@ function getDriverInstance() {
   //http://ec2-52-212-140-72.eu-west-1.compute.amazonaws.com:4444/wd/hub
 
   if(remoteService) {
+    let options = new chrome.Options();
+    options.addArguments('--no-sandbox', '--disable-dev-shm-usage');
+
     return new seleniumWebdriver.Builder()
       .forBrowser('chrome')
-      .setChromeOptions('--no-sandbox')
-      .setChromeOptions('--disable-dev-shm-usage')
+      .setChromeOptions(options)
       .usingServer(remoteService)
       .build();
 
