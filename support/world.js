@@ -26,7 +26,6 @@ function getDriverInstance() {
 
     return new seleniumWebdriver.Builder()
       .forBrowser('chrome')
-      .setChromeOptions(options)
       .usingServer(remoteService)
       .build();
 
