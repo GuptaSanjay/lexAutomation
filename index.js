@@ -38,7 +38,7 @@ program
   .parse(process.argv);
 
 program.on('--help', function(){
-  console.log('For more details please visit https://github.com/larryg01/klassi-cucumber-js#readme\n');
+  console.log('Help');
 });
 
 
@@ -83,6 +83,4 @@ runArgs.push('-r', path.resolve('./features/'+program.steps));
 
 let cliArgs = {argv : runArgs, cwd: process.cwd(), stdout: process.stdout};
 let cli = new (require('cucumber').Cli)(cliArgs);
-console.log("Before CLI RUN");
 cli.run();
-console.log("After CLI RUN");
