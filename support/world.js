@@ -20,7 +20,9 @@ function getDriverInstance() {
 
   if(remoteService) {
     return new seleniumWebdriver.Builder()
-      .forBrowser(browser)
+      .forBrowser('chrome')
+      .setChromeOptions('--no-sandbox')
+      .setChromeOptions('--disable-dev-shm-usage')
       .usingServer(remoteService)
       .build();
 
