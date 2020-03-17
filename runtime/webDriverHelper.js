@@ -67,13 +67,15 @@ module.exports = {
   },
 
   //*******Iframe*******//
-  switchToLexIframe: function () {
-    return this.getAttributeName('.//*[starts-with(@name, "vfFrameId")]').then(name => this.switchToIframe(name));
+  switchToLexIframe: async function () {
+    const partialLexIframeName = './/*[starts-with(@name, "vfFrameId")]';
+    await this.isDisplayed(partialLexIframeName);
+    await this.getAttributeName(partialLexIframeName).then(name => this.switchToIframe(name));
     // return this.getSFElement('.//*[starts-with(@name, "vfFrameId")]', '').then(el => el.getAttribute('name').then(name => driver.switchTo().frame(name)));
   },
 
   switchToIframe: function (name) {
-    driver.switchTo().frame(name);
+    return driver.switchTo().frame(name);
   },
 
   //*******Is*******//

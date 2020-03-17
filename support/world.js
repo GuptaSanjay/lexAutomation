@@ -6,6 +6,7 @@ const chrome = require('selenium-webdriver/chrome');
 
 const {Before} = require("cucumber");
 
+global.SHORTEST_WAIT = 1000;// 1 second delay in milliseconds
 global.SHORT_WAIT = 3000;  // 3 second delay in milliseconds
 global.MID_WAIT = 5000;    // 5 second delay in milliseconds
 global.LONG_WAIT = 10000;  // 10 second delay in milliseconds
