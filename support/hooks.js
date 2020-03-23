@@ -1,8 +1,8 @@
-const {After,AfterAll} = require("cucumber");
+const {Before, After,AfterAll} = require("cucumber");
 
-// Before(function () {
-//   return driver.manage().window().setSize(1680, 1050);
-// });
+Before(function () {
+  return driver.manage().window().maximize();
+});
 
 After(async function (scenario) {
   let world = this;

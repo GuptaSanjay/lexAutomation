@@ -6,8 +6,8 @@
   "scripts": {
     "test1": "cucumber-js",
     "test": "node index.js",
-    "uat": "node index.js -n test -t @newDeliveryZquoteGBR",
-    "grid": " -w http://ec2-52-212-140-72.eu-west-1.compute.amazonaws.com:4444/wd/hub"
+    "uat": "node index.js -n env -t @tag",
+    "grid": " -w http://amazonaws.com:4444/wd/hub"
   },
   "author": "Mandeep",
   "license": "ISC",
