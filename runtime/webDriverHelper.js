@@ -38,8 +38,8 @@ module.exports = {
       // identifier = identifier.substring(1);
       by = By.xpath(identifier);
     } else if (identifier.includes(".")) {
-      identifier = identifier.substring(1);
-      by = By.className(identifier);
+      // identifier = identifier.substring(1);
+      by = By.css(identifier);
     }
     return by;
   },
