@@ -18,7 +18,6 @@
     "cucumber": "^6.0.5",
     "cucumber-html-reporter": "^5.1.0",
     "geckodriver": "^1.19.1",
-    "properties-reader": "0.0.16",
     "selenium-webdriver": "^3.6.0"
   }
 }
