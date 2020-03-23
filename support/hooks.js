@@ -1,6 +1,7 @@
 const {Before, After,AfterAll} = require("cucumber");
 
 Before(async function () {
+  await driver.sleep(5000);
   return driver.manage().window().maximize();
 });
 
