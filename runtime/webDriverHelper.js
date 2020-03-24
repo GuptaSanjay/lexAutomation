@@ -70,7 +70,7 @@ module.exports = {
 
   //*******Iframe*******//
   switchToLexIframe: async function () {
-    const partialLexIframeName = './/*[starts-with(@name, "vfFrameId")]';
+    const partialLexIframeName = '(.//*[starts-with(@name, "vfFrameId")])[last()]';
     await this.isDisplayed(partialLexIframeName);
     await this.getAttributeName(partialLexIframeName).then(name => this.switchToIframe(name));
     // return this.getSFElement('.//*[starts-with(@name, "vfFrameId")]', '').then(el => el.getAttribute('name').then(name => driver.switchTo().frame(name)));
