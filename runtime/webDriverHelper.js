@@ -17,6 +17,12 @@ module.exports = {
     return this.getSFElement(identifier).then(el => el.getAttribute('name'));
   },
 
+
+  getElementsCount: async function(identifier){
+    let el = await this.getSFElements(identifier);
+    return el.length;
+  },
+
   //*******Click*******//
   click: function (identifier) {
     return this.getSFElement(identifier, '').then(el => el.click());
