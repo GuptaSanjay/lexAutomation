@@ -32,7 +32,7 @@ program
   .option('-b, --browser [optional]', 'name of browser to use. defaults to chrome', /^(chrome|firefox)$/i, 'chrome')
   .option('-t, --tags <tagName>', 'name of tag to run')
   .option('-p, --reportPath <path d="">', 'output path to save reports. defaults to ./reports', 'reports')
-  .option('-r, --reportName [optional]', 'basename for report files e.g. use report for report.json', 'cucumber-json-report')
+  .option('-r, --reportName [optional]', 'basename for report files e.g. use report for report.json', 'sf-cucumber-json-report')
   .option('-w, --remoteService [optional]', 'address of the selenium grid', '')
   .option('-s, --steps <path d="">', 'path to step definitions. defaults to ./step_definitions', 'step_definitions')
   .parse(process.argv);
