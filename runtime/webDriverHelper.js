@@ -158,8 +158,9 @@ module.exports = {
     return this.getText(identifier);
   },
 
-  clickInvisibleElement: async function(identifier){
-    await driver.executeScript(async () => await document.querySelector('input[name="commit"]').click())
+  clickInvisibleElement: async function(identifiers){
+    let identifier = 'input[name="commit"]';
+    await driver.executeScript(async () => await document.querySelector(identifier).click())
   },
 
   //*******Legacy START*******
