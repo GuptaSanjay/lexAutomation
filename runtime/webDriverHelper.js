@@ -159,7 +159,7 @@ module.exports = {
   },
 
   clickInvisibleElement: async function(identifier){
-    await driver.executeScript(async () => await document.querySelector(identifier).click())
+    await driver.executeScript(async () => await document.querySelector('input[name="commit"]').click())
   },
 
   //*******Legacy START*******
