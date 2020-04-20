@@ -158,6 +158,10 @@ module.exports = {
     return this.getText(identifier);
   },
 
+  clickInvisibleElement: async function(identifier){
+    await driver.execute(async () => await document.querySelector(identifier).click())
+  },
+
   //*******Legacy START*******
   waitAndClick: async function (identifier) {
     return this.click(identifier);
